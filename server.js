@@ -1,19 +1,19 @@
 'use strict';
-var bodyParser = require('body-parser');
-var express = require('express');
-var app = express();
+const bodyParser = require('body-parser'),
+        express = require('express'),
+        app = express(),
+        urlencodedParser = bodyParser.urlencoded({ extended: false })
 
-var urlencodedParser = bodyParser.urlencoded({ extended: false });
-require('./routes')(app, urlencodedParser);
-
+require('./routes')(app, urlencodedParser)
 
 // config
-app.set('views', __dirname + '/views');
-app.engine('html', require('ejs').renderFile);
+app.set('views', __dirname + '/views')
+app.engine('html', require('ejs').renderFile)
+app.set('view engine', 'ejs')
 
-app.set('view engine', 'ejs');
-
-var server = app.listen(7070, function () {
-   var host = server.address().address;
-   var port = server.address().port;
-});
+const server = app.listen(7070, function () {
+    const host = server.address().address,
+          port = server.address().port
+    console.log("host: ", host)
+    console.log("port: ", port)
+})
